@@ -1,0 +1,210 @@
+От моя гледна точка Babel най-лесно се изполва от NPM. По тази причина се налага първо да обясним какво е NPM. NPM е подразбиращия се package manager на JavaScript runtime environment-a NodeJS.  NodeJS по-принцип се използва за разработка на backend web приложения, но по-голямата си популярност придобива чрез екосистемата от инструменти, развити около неговия package manager - NPM. Изключително голяма популярност имат например т.нар scaffolding tools. Това са инструменти за бърза генерация на скелет на проект на типично приложение. Един от тях е например yeoman: http://yeoman.io/ Той поддържа изключително голям списък от генератори, който можете да видите тук: 
+http://yeoman.io/generators/   Освен генерация на стартовото приложение тези генератори поддържат и полезни инструменти за по-нататъчната разработка на приложението. Например, както може да се види тук: https://github.com/yeoman/generator-angular#readme 
+Генераторът на AngularJS поддържа генериране на нови контролери, директиви, филтри, вю-та и така нататък. Нещата отиват и доста по-далеч. Още с началото на проекта вие вече имате организиран билд процес + минификация на приложението.  Пример за малко нещо, направено с yeoman можете да видите тук: 
+http://gonaumov.github.io/easterEggs/
+На, който му е интересно може да разгледа кода ето тук: 
+https://github.com/gonaumov/easterEggs
+Разработката ми отне около два часа. Бяха ми спестени, сваляне на библиотеки и на структурата на приложението – контролери, директиви, сървиси и тн. 
+Има тенденция все повече инструменти да стават npm пакети. Един пример за тази тенденция е например jpm. Jpm е инструмент от командния ред, поддържан от мозила той служи за разработване, тестване и пакетиране на браузерни добавки на Mozilla Firefox: https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm  jpm се явява наследник на cfx инструмента, който си вървеше със старите версии на Mozila FireFox add-on SDK. Npm държи списъка от зависимости във .json файл, наречен package.json. Ето пример за типичен package.json:
+
+{ 
+  "name": "babelpresentation", 
+  "version": "1.0.0", 
+  "description": "babel presentation", 
+  "main": "index.js", 
+  "scripts": { 
+    "test": "echo \"Error: no test specified\" && exit 1" 
+  }, 
+  "author": "Georgi Naumov", 
+  "license": "ISC", 
+  "devDependencies": { 
+    "babel-cli": "^6.11.4" 
+  } 
+} 
+
+npm модулите се съдържат обикновено във директорията node_modules в същия проект. 
+Ако я няма командата npm install ще ви свали нужните модули и ще създаде директорията. 
+Смешната страна на npm. Тези дни имаше един забавен случай, когато се оказа, че има asci art във babel-core-a, но той е премахнат вече. Нека разгледаме какво има в този PR: 
+https://github.com/babel/babel/pull/3656
+Защо ни е нужен Babel? Babel е де факто конвъртър от EcmaScript 6 към EcmaScript 5 с чиято помощ можем да ползваме EcmaScript  6 стандарта преди да бъде поддържан на определената среда. 
+
+Babel поддържа текущата версия на EcmaScript – EcmaScript 2015 с помоща на 
+трансформатори на синтаксис. Това са плъгини, които ти позволяват да ползваш текущия синтаксис на EcmaScript 2015 точно сега – без да очакваме подръжка в браузерите. 
+Babel ни осигурява това чрез babel-preset-es2015 плъгина, който обединява няколко неща.
+
+
+    check-es2015-constants
+    Подръжка на константи (също познати като immutable променливи). Това са променливи, чиято стойност не може да 
+    бъде променяна след като веднъж е зададена. 
+
+    transform-es2015-arrow-functions
+     Arrow function изразите са по-кратъп синтактис в сравнение със expression функцийте и bind-ват текущия this към контекста на 
+     функцията. Де  факто са по-кратък и бърз начин за дефиниране на анонимна функция. 
+Например това:
+     var a = () => {};
+var a = (b) => b;
+
+const double = [1,2,3].map((num) => num * 2);
+console.log(double); // [2,4,6]
+
+var bob = {
+  _name: "Bob",
+  _friends: ["Sally", "Tom"],
+  printFriends() {
+    this._friends.forEach(f =>
+      console.log(this._name + " knows " + f));
+  }
+};
+console.log(bob.printFriends());
+Babel ще транспайлне до:
+var a = function a() {};
+var a = function a(b) {
+  return b;
+};
+
+var double = [1, 2, 3].map(function (num) {
+  return num * 2;
+});
+console.log(double); // [2,4,6]
+
+var bob = {
+  _name: "Bob",
+  _friends: ["Sally", "Tom"],
+  printFriends: function printFriends() {
+    var _this = this;
+
+    this._friends.forEach(function (f) {
+      return console.log(_this._name + " knows " + f);
+    });
+  }
+};
+console.log(bob.printFriends());
+
+
+
+    transform-es2015-block-scoped-functions
+    Това ни позволява да ползваме новата ключова дума let, с която можем да имаме 
+scope на ниво condition. Например това ще даде грешка:
+function foo(flag) {
+    if (flag) {
+        let a = 10;
+    }
+    return a;           // ReferenceError: a is not defined
+}
+console.log(foo(true));
+
+
+
+    transform-es2015-block-scoping
+    transform-es2015-classes
+    Подръжка на новия EcmaScript 6 синтаксис за класове
+     class Point {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+        toString() {
+            return '(' + this.x + ', ' + this.y + ')';
+        }
+    }
+    
+    class ColorPoint extends Point {
+        constructor(x, y, color) {
+            super(x, y);
+            this.color = color;
+        }
+        toString() {
+            return super.toString() + ' in ' + this.color;
+        }
+    }
+    
+    let cp = new ColorPoint(25, 8, 'green');
+    cp.toString(); // '(25, 8) in green'
+    
+    console.log(cp instanceof ColorPoint); // true
+    console.log(cp instanceof Point); // true
+    
+    transform-es2015-computed-properties
+
+   Започвайки с EcmaScript 2015 синтаксисът на обектната инициалиазиция също поддържа свойства, които са резултат от изчисления. 
+    Това ни позволява да ползваме изрази в счупени скоби, името на свойството ще е резултат на израза в скобите. 
+    Същото нещо имеме, когато искаме да достъпим стойноста на свойство.
+    // Computed property names (ES6)
+var i = 0;
+var a = {
+  ["foo" + ++i]: i,
+  ["foo" + ++i]: i,
+  ["foo" + ++i]: i
+};
+
+console.log(a.foo1); // 1
+console.log(a.foo2); // 2
+console.log(a.foo3); // 3
+
+var param = 'size';
+var config = {
+  [param]: 12,
+  ["mobile" + param.charAt(0).toUpperCase() + param.slice(1)]: 4
+};
+
+console.log(config); // { size: 12, mobileSize: 4 }
+
+    transform-es2015-destructuring
+Destructing синтаксиса представлява JavaScript израз, който прави възможно да екстрактваме данни от масиви или обекти в различни променливи. Например:
+var a, b, rest;
+[a, b] = [1, 2];
+console.log(a); // 1
+console.log(b); // 2
+
+[a, b, ...rest] = [1, 2, 3, 4, 5]
+console.log(a); // 1
+console.log(b); // 2
+console.log(rest); // [3, 4, 5]
+
+({a, b} = {a:1, b:2})
+console.log(a); // 1
+console.log(b); // 2
+
+    transform-es2015-duplicate-keys
+
+    transform-es2015-for-of
+    transform-es2015-function-name
+    transform-es2015-literals
+    transform-es2015-modules-commonjs
+    transform-es2015-object-super
+    transform-es2015-parameters
+    transform-es2015-shorthand-properties
+    transform-es2015-spread
+    transform-es2015-sticky-regex
+    transform-es2015-template-literals
+    transform-es2015-typeof-symbol
+    transform-es2015-unicode-regex
+    transform-regenerator
+-  
+
+Как да инсталираме babel от npm пакетния мениджър? 
+
+ npm install --save-dev babel-core
+
+Използване
+
+require("babel-core").transform("code", options);
+
+За да използваме  babel-preset-es2015 трябва да ги инсталираме. 
+
+npm install babel-preset-es2015 --save-dev
+
+Доста по-удобно е, обаче да използваме gulp-babel. Това е gulp плъгин за babel. 
+https://www.npmjs.com/package/gulp-babel
+
+
+.babelrc  файла е конфигурационният файл на babel. babel го търси в root-a на проекта. Чрез .babelrc файла се разрешават инсталираните плъгини и се сетват редица опциий. Например ако имате инсталират ecma2015 preset трябва да го разрешите от конфигурационния файл така:
+
+{
+  "presets": ["es2015"]
+}
+      
+
+
+
+  
