@@ -18,11 +18,12 @@ https://github.com/yeoman/generator-angular#readme
 [https://github.com/gonaumov/easterEggs](https://github.com/gonaumov/easterEggs) 
 Разработката ми отне около два часа. Бяха ми спестени, сваляне на библиотеки и на структурата на приложението – контролери, директиви, сървиси и тн. 
 
-# Има тенденция все повече инструменти да стават npm пакети. 
-
+# Тенденция при command line tools. 
+ 
+Има тенденция все повече инструменти да стават npm пакети.
 Един пример за тази тенденция е например jpm. Jpm е инструмент от командния ред, поддържан от мозила той служи за разработване, 
 тестване и пакетиране на браузерни добавки на Mozilla Firefox: 
-[https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm](https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm)  
+[https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm](https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm)    
 jpm се явява наследник на cfx инструмента, който си вървеше със старите версии на Mozila FireFox add-on SDK. 
 
 # Зависимости в npm
@@ -67,7 +68,6 @@ Babel ни осигурява това чрез babel-preset-es2015 плъгин
 Arrow function изразите са по-кратъп синтактис в сравнение със expression функцийте и bind-ват текущия this към контекста на 
 функцията. Де  факто са по-кратък и бърз начин за дефиниране на анонимна функция. 
 
-# Пример за Arrows и Lexical This синтаксиса
 ```javascript
 var a = () => {};
 var a = (b) => b;
@@ -85,8 +85,129 @@ var bob = {
 };
 console.log(bob.printFriends());
 ```
+# Класове
+
+В ES2015 класовете са просто sugar syntax около прототипно базираното 
+ООП. Тъй като имат по-просто декларативна форма те са по-лесни за употреба. 
+Класовете поддържат прототипно базирано наследяване извикване на базовия клас 
+със super, инстанцийране, статични методи и конструктори.
+
+# Пример за клас. 
+```javascript
+class SkinnedMesh extends THREE.Mesh {
+  constructor(geometry, materials) {
+    super(geometry, materials);
+
+    this.idMatrix = SkinnedMesh.defaultMatrix();
+    this.bones = [];
+    this.boneMatrices = [];
+    //...
+  }
+  update(camera) {
+    //...
+    super.update();
+  }
+  static defaultMatrix() {
+    return new THREE.Matrix4();
+  }
+}
+```
+
+# Подобрени object literals
+Object literals са подобрени да поддържат задаване на простотипа по време 
+на създаване, по-кратък начин на foo: foo задаване, дефиниция на методи и 
+викане на функция от парента (super call). 
+
+```javascript
+var obj = {
+    // Sets the prototype. "__proto__" or '__proto__' would also work.
+    __proto__: theProtoObj,
+    // Computed property name does not set prototype or trigger early error for
+    // duplicate __proto__ properties.
+    ['__proto__']: somethingElse,
+    // Shorthand for ‘handler: handler’
+    handler,
+    // Methods
+    toString() {
+     // Super calls
+     return "d " + super.toString();
+    },
+    // Computed (dynamic) property names
+    [ "prop_" + (() => 42)() ]: 42
+};
+```
+
+# Template стрингове
+
+Template стрингове осигуряват syntactic sugar за създаване на стрингове. Това е подобно 
+на стринговата интерполация в Perl, Python и други. По желание може да бъде добавен таг, 
+което ни позволява конструирането на стринга да бъде по custom, избягване на инжекшън 
+атака или сглобявана на по-високо нива стриктура от данни от съдържанието на стринга. 
+
+```javascript
+// Basic literal string creation
+`This is a pretty little template string.`
+
+// Multiline strings
+`In ES5 this is
+ not legal.`
+
+// Interpolate variable bindings
+var name = "Bob", time = "today";
+`Hello ${name}, how are you ${time}?`
+
+// Unescaped template strings
+String.raw`In ES5 "\n" is a line-feed.`
+
+// Construct an HTTP request prefix is used to interpret the replacements and construction
+GET`http://foo.org/bar?a=${a}&b=${b}
+    Content-Type: application/json
+    X-Credentials: ${credentials}
+    { "foo": ${foo},
+      "bar": ${bar}}`(myOnReadyStateChangeHandler);
+```
+
+# Destructing
+
+Destructing синтаксиса представлява JavaScript израз, който прави възможно да екстрактваме данни от масиви или обекти в различни променливи. 
+Това се постига с т.нар pattern matching. 
 
 
+# Пример за destructing
+```javascript
+// list matching
+var [a, ,b] = [1,2,3];
+a === 1;
+b === 3;
+
+// object matching
+var { op: a, lhs: { op: b }, rhs: c }
+       = getASTNode()
+
+// object matching shorthand
+// binds `op`, `lhs` and `rhs` in scope
+var {op, lhs, rhs} = getASTNode()
+
+// Can be used in parameter position
+function g({name: x}) {
+  console.log(x);
+}
+g({name: 5})
+
+// Fail-soft destructuring
+var [a] = [];
+a === undefined;
+
+// Fail-soft destructuring with defaults
+var [a = 1] = [];
+a === 1;
+
+// Destructuring + defaults arguments
+function r({x, y, w = 10, h = 10}) {
+  return x + y + w + h;
+}
+r({x:1, y:2}) === 23
+```
 
     transform-es2015-block-scoped-functions
     Това ни позволява да ползваме новата ключова дума let, с която можем да имаме 
