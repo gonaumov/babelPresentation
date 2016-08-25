@@ -183,7 +183,10 @@ b === 3;
 // object matching
 var { op: a, lhs: { op: b }, rhs: c }
        = getASTNode()
+```
 
+# Още примери за destructing
+```javascript
 // object matching shorthand
 // binds `op`, `lhs` and `rhs` in scope
 var {op, lhs, rhs} = getASTNode()
@@ -193,7 +196,10 @@ function g({name: x}) {
   console.log(x);
 }
 g({name: 5})
+```
 
+# Още примери за destructing
+```javascript
 // Fail-soft destructuring
 var [a] = [];
 a === undefined;
@@ -208,10 +214,33 @@ function r({x, y, w = 10, h = 10}) {
 }
 r({x:1, y:2}) === 23
 ```
-
-    transform-es2015-block-scoped-functions
-    Това ни позволява да ползваме новата ключова дума let, с която можем да имаме 
-scope на ниво condition. Например това ще даде грешка:
+# Default + Rest + Spread
+EcmaScript 2015 ни позволява да имаме параметри по-подразбиране да третираме последователни аргументи като масив и  да 
+превръщаме масив в последователни аргументи при извикване на функция.
+```javascript
+function f(x, y=12) {
+  // y is 12 if not passed (or passed as undefined)
+  return x + y;
+}
+f(3) == 15
+```
+```javascript
+function f(x, ...y) {
+  // y is an Array
+  return x * y.length;
+}
+f(3, "hello", true) == 6
+```
+```javascript
+function f(x, y, z) {
+  return x + y + z;
+}
+// Pass each elem of array as argument
+f(...[1,2,3]) == 6
+```
+# Let + Const
+Scope на ниво control flow structures. let e новата версия на var const е константа.
+```javascript
 function foo(flag) {
     if (flag) {
         let a = 10;
@@ -219,120 +248,126 @@ function foo(flag) {
     return a;           // ReferenceError: a is not defined
 }
 console.log(foo(true));
-
-
-
-    transform-es2015-block-scoping
-    transform-es2015-classes
-    Подръжка на новия EcmaScript 6 синтаксис за класове
-     class Point {
-        constructor(x, y) {
-            this.x = x;
-            this.y = y;
-        }
-        toString() {
-            return '(' + this.x + ', ' + this.y + ')';
-        }
+```
+# Iterators + For..Of
+Iterator обектите позволяват итерация със подобно for..in с custom for..of
+Няма нужда от от масив позволявайки ни lazy design. 
+```javascript
+let fibonacci = {
+  [Symbol.iterator]() {
+    let pre = 0, cur = 1;
+    return {
+      next() {
+        [pre, cur] = [cur, pre + cur];
+        return { done: false, value: cur }
+      }
     }
-    
-    class ColorPoint extends Point {
-        constructor(x, y, color) {
-            super(x, y);
-            this.color = color;
-        }
-        toString() {
-            return super.toString() + ' in ' + this.color;
-        }
-    }
-    
-    let cp = new ColorPoint(25, 8, 'green');
-    cp.toString(); // '(25, 8) in green'
-    
-    console.log(cp instanceof ColorPoint); // true
-    console.log(cp instanceof Point); // true
-    
-    transform-es2015-computed-properties
+  }
+}
 
-   Започвайки с EcmaScript 2015 синтаксисът на обектната инициалиазиция също поддържа свойства, които са резултат от изчисления. 
-    Това ни позволява да ползваме изрази в счупени скоби, името на свойството ще е резултат на израза в скобите. 
-    Същото нещо имеме, когато искаме да достъпим стойноста на свойство.
-    // Computed property names (ES6)
-var i = 0;
-var a = {
-  ["foo" + ++i]: i,
-  ["foo" + ++i]: i,
-  ["foo" + ++i]: i
-};
+for (var n of fibonacci) {
+  // truncate the sequence at 1000
+  if (n > 1000)
+    break;
+  console.log(n);
+}
+```
 
-console.log(a.foo1); // 1
-console.log(a.foo2); // 2
-console.log(a.foo3); // 3
+# Generators
+Декларациа на function* (function ключовата дума следвана от звездичка) дефинира 
+функция генератор. Генератори са функции, които могат да бъдат прекъснати и след това 
+да бъдат стартирани отново. Техният контекст ще бъде запазен между извикванията.
 
-var param = 'size';
-var config = {
-  [param]: 12,
-  ["mobile" + param.charAt(0).toUpperCase() + param.slice(1)]: 4
-};
+# Прост пример за функция генератор.
+```javascript
+function* idMaker(){
+  var index = 0;
+  while(index < 3)
+    yield index++;
+}
 
-console.log(config); // { size: 12, mobileSize: 4 }
+var gen = idMaker();
 
-    transform-es2015-destructuring
-Destructing синтаксиса представлява JavaScript израз, който прави възможно да екстрактваме данни от масиви или обекти в различни променливи. Например:
-var a, b, rest;
-[a, b] = [1, 2];
-console.log(a); // 1
-console.log(b); // 2
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // undefined
+// ...
+```
 
-[a, b, ...rest] = [1, 2, 3, 4, 5]
-console.log(a); // 1
-console.log(b); // 2
-console.log(rest); // [3, 4, 5]
+# Модули
+Подръжка на модули за дефиниране на компоненти. Имплрментира patters от популярните JavaScript modul loadres (AMD, CommonJS). 
+Безусловно асинхронен модел - кодът не се изпълнява преди изиксваните модули да са достъпни и обработени.
 
-({a, b} = {a:1, b:2})
-console.log(a); // 1
-console.log(b); // 2
+```javascript
+// lib/math.js
+export function sum(x, y) {
+  return x + y;
+}
+export var pi = 3.141593;
 
-    transform-es2015-duplicate-keys
+// app.js
+import * as math from "lib/math";
+console.log("2π = " + math.sum(math.pi, math.pi));
 
-    transform-es2015-for-of
-    transform-es2015-function-name
-    transform-es2015-literals
-    transform-es2015-modules-commonjs
-    transform-es2015-object-super
-    transform-es2015-parameters
-    transform-es2015-shorthand-properties
-    transform-es2015-spread
-    transform-es2015-sticky-regex
-    transform-es2015-template-literals
-    transform-es2015-typeof-symbol
-    transform-es2015-unicode-regex
-    transform-regenerator
--  
+// otherApp.js
+import {sum, pi} from "lib/math";
+console.log("2π = " + sum(pi, pi));
+```
 
-Как да инсталираме babel от npm пакетния мениджър? 
+# Map + Set + WeakMap + WeakSet
+По-добри структури от данни. WeakMaps осигурява leak-free обект към ключ таблица. 
+```javascript
+// Sets
+var s = new Set();
+s.add("hello").add("goodbye").add("hello");
+s.size === 2;
+s.has("hello") === true;
 
+// Maps
+var m = new Map();
+m.set("hello", 42);
+m.set(s, 34);
+m.get(s) == 34;
+
+// Weak Maps
+var wm = new WeakMap();
+wm.set(s, { extra: 42 });
+wm.size === undefined
+
+// Weak Sets
+var ws = new WeakSet();
+ws.add({ data: 42 });
+// Because the added object has no other references, it will not be held in the set
+```
+# Как да инсталираме babel от npm? 
+
+```
  npm install --save-dev babel-core
+```
+#Използване
 
-Използване
-
+```
 require("babel-core").transform("code", options);
-
+```
 За да използваме  babel-preset-es2015 трябва да ги инсталираме. 
 
+```
 npm install babel-preset-es2015 --save-dev
+```
 
 Доста по-удобно е, обаче да използваме gulp-babel. Това е gulp плъгин за babel. 
 [https://www.npmjs.com/package/gulp-babel](https://www.npmjs.com/package/gulp-babel)
 
-
+# .babelrc
 .babelrc  файла е конфигурационният файл на babel. babel го търси в root-a на проекта. Чрез
  .babelrc файла се разрешават инсталираните плъгини и се сетват редица опциий. Например ако имате инсталират
   ecma2015 preset трябва да го разрешите от конфигурационния файл така:
-
+```
 {
   "presets": ["es2015"]
 }
-      
+```      
 
 
 
