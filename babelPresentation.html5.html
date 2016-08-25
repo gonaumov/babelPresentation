@@ -1,0 +1,788 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Babel, or how to use next generation JavaScript nowadays?</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono">
+    <link rel="stylesheet" href="src/prettify/prettify.css" id="prettify-link" disabled>
+    <link rel="stylesheet" href="styles/fonts.css"        media="screen">
+    <link rel="stylesheet" href="styles/presentation.css" media="screen">
+    <link rel="stylesheet" href="styles/common.css"       media="screen">
+
+    <!-- todo: check - is media="screen" needed? what is the "default"? -->
+    <link rel="stylesheet" href="styles/default.css"  class="theme" media="screen">
+    <link rel="stylesheet" href="styles/moon.css"     class="theme" media="screen">
+    <link rel="stylesheet" href="styles/sand.css"     class="theme" media="screen">
+    <link rel="stylesheet" href="styles/sea_wave.css" class="theme" media="screen">
+  </head>
+  <body>
+    <div id="flex-container">
+    <nav id="helpers">
+      <button title="Previous slide"         id="nav-prev" class="nav-prev">&#8701;</button>
+      <button title="Jump to a random slide" id="slide-no">5</button>
+      <button title="Next slide"             id="nav-next" class="nav-next">&#8702;</button>
+      <menu>
+        <button type="checkbox" data-command="toc" title="Table of Contents" class="toc">TOC</button>
+        <!-- <button type="checkbox" data-command="resources" title="View Related Resources">&#9734;</button> -->
+        <button type="checkbox" data-command="notes" title="View Slide Notes">&#9999;</button>
+        <button type="checkbox" data-command="source" title="View slide source">&#8635;</button>
+        <button type="checkbox" data-command="help" title="View Help">?</button>
+      </menu>
+    </nav>
+    <div class="slides">
+        <div id="presentation-counter">Loading...</div>
+
+        <div class="slide" id="landing-slide">
+          <section class="middle">
+            <p>This presentation is an HTML5 website</p>
+            <p>Press <span id="left-init-key" class="key">&rarr;</span> key to advance.</p>
+          </section>
+          <aside class="note">
+            <section>
+              Welcome! (This field is for speaker notes and commentary.)
+            </section>
+          </aside>
+        </div>
+
+        <div class="slide" id="controls-slide">
+          <header>Slides controls</header>
+          <section>
+            <ul>
+              <li><span class="key">&larr;</span> and <span class="key">&rarr;</span> to move around.</li>
+              <li><span class="key">Ctrl/Command</span> and <span class="key">+</span> or <span class="key">-</span> to zoom in and out if slides don’t fit.</li>
+              <li><span class="key">S</span> to view page source.</li>
+              <li><span class="key">T</span> to change the theme.</li>
+              <li><span class="key">H</span> to toggle syntax highlight.</li>
+              <li><span class="key">N</span> to toggle speaker notes.</li>
+              <li><span class="key">3</span> to toggle 3D effect.</li>
+              <li><span class="key">0</span> to toggle help.</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="slide" id="title-slide">
+          <section class="middle">
+            <hgroup>
+              <h1>
+                Babel, or how to use next generation JavaScript nowadays?
+              </h1>
+              <h2>
+                
+              </h2>
+            </hgroup>
+          </section>
+        </div>
+
+        <div class="slide" id="table-of-contents">
+          <header><h1>Agenda - Table of Contents</h1></header>
+          <section>
+            <ul id="toc-list">
+            </ul>
+          </section>
+        </div>
+
+
+
+
+
+
+        <div class="slide transitionSlide" id="slide1">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="babel">Babel</h1></header>
+          <section>
+              
+<!-- _S9SLIDE_ -->
+
+<p>От моя гледна точка Babel най-лесно се изполва от NPM. По тази причина се налага първо да обясним какво е NPM. NPM е подразбиращия се package manager на JavaScript runtime environment-a NodeJS. 
+ NodeJS по-принцип се използва за разработка на backend web приложения, но по-голямата си популярност придобива чрез екосистемата от инструменти, развити около неговия package manager - NPM. 
+ Изключително голяма популярност имат например т.нар scaffolding tools. Това са инструменти за бърза генерация на скелет на проект на типично приложение. Един от тях е например yeoman:</p>
+
+<p><a href="http://yeoman.io/">http://yeoman.io/</a></p>
+
+<p>Той поддържа изключително голям списък от генератори, който можете да видите тук: 
+<a href="http://yeoman.io/generators/">http://yeoman.io/generators/</a> <br />
+Освен генерация на стартовото приложение тези генератори поддържат и полезни инструменти за по-нататъчната разработка на приложението. 
+Например, както може да се види тук: 
+https://github.com/yeoman/generator-angular#readme <br />
+Генераторът на AngularJS поддържа генериране на нови контролери, директиви, филтри, вю-та и така нататък. 
+Нещата отиват и доста по-далеч. Още с началото на проекта вие вече имате организиран билд процес + 
+минификация на приложението.  Пример за малко нещо, направено с yeoman можете да видите тук: 
+<a href="http://gonaumov.github.io/easterEggs/">http://gonaumov.github.io/easterEggs/</a><br />
+На, който му е интересно може да разгледа кода ето тук: 
+<a href="https://github.com/gonaumov/easterEggs">https://github.com/gonaumov/easterEggs</a> 
+Разработката ми отне около два часа. Бяха ми спестени, сваляне на библиотеки и на структурата на приложението - контролери, директиви, сървиси и тн.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide2">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="command-line-tools">Тенденция при command line tools.</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>Има тенденция все повече инструменти да стават npm пакети.
+Един пример за тази тенденция е например jpm. Jpm е инструмент от командния ред, поддържан от мозила той служи за разработване, 
+тестване и пакетиране на браузерни добавки на Mozilla Firefox: 
+<a href="https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm">https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm</a>  <br />
+jpm се явява наследник на cfx инструмента, който си вървеше със старите версии на Mozila FireFox add-on SDK.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide3">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="npm">Зависимости в npm</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Npm държи списъка от зависимости във .json файл, наречен package.json. Ето пример за типичен package.json:</p>
+<pre><code>{ 
+  "name": "babelpresentation", 
+  "version": "1.0.0", 
+  "description": "babel presentation", 
+  "main": "index.js", 
+  "scripts": { 
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1" 
+  }, 
+  "author": "Georgi Naumov", 
+  "license": "ISC", 
+  "devDependencies": { 
+    "babel-cli": "^6.11.4" 
+  } 
+} 
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide4">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="section">Къде се съдържат модулите?</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>npm модулите се съдържат обикновено във директорията node_modules в същия проект. 
+Ако я няма командата npm install ще ви свали нужните модули и ще създаде директорията.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide5">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="npm-1">Смешната страна на npm.</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Тези дни имаше един забавен случай, когато се оказа, че има asci art във babel-core-a, но той е премахнат вече. Нека разгледаме какво има в този PR: 
+<a href="https://github.com/babel/babel/pull/3656">https://github.com/babel/babel/pull/3656</a></p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide6">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="babel-1">Защо ни е нужен Babel?</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>Babel е де факто конвъртър от EcmaScript 6 към EcmaScript 5 с чиято помощ можем да ползваме EcmaScript  6 стандарта преди да бъде поддържан на определената среда.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide7">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="t--">Tрансформатори на синтаксис.</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Babel поддържа текущата версия на EcmaScript - EcmaScript 2015 с помоща на 
+трансформатори на синтаксис. Това са плъгини, които ти позволяват да ползваш текущия синтаксис на EcmaScript 2015 точно сега - без да очакваме подръжка в браузерите. 
+Babel ни осигурява това чрез babel-preset-es2015 плъгина, който обединява няколко неща.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide8">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="arrows--lexical-this">Arrows и Lexical This</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Arrow function изразите са по-кратъп синтактис в сравнение със expression функцийте и bind-ват текущия this към контекста на 
+функцията. Де  факто са по-кратък и бърз начин за дефиниране на анонимна функция.</p>
+
+<pre><code class="language-javascript">var a = () =&gt; {};
+var a = (b) =&gt; b;
+
+const double = [1,2,3].map((num) =&gt; num * 2);
+console.log(double); // [2,4,6]
+
+var bob = {
+  _name: "Bob",
+  _friends: ["Sally", "Tom"],
+  printFriends() {
+    this._friends.forEach(f =&gt;
+      console.log(this._name + " knows " + f));
+  }
+};
+console.log(bob.printFriends());
+</code></pre>
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide9">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="section-1">Класове</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>В ES2015 класовете са просто sugar syntax около прототипно базираното 
+ООП. Тъй като имат по-просто декларативна форма те са по-лесни за употреба. 
+Класовете поддържат прототипно базирано наследяване извикване на базовия клас 
+със super, инстанцийране, статични методи и конструктори.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide10">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="section-2">Пример за клас.</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<pre><code class="language-javascript">class SkinnedMesh extends THREE.Mesh {
+  constructor(geometry, materials) {
+    super(geometry, materials);
+
+    this.idMatrix = SkinnedMesh.defaultMatrix();
+    this.bones = [];
+    this.boneMatrices = [];
+    //...
+  }
+  update(camera) {
+    //...
+    super.update();
+  }
+  static defaultMatrix() {
+    return new THREE.Matrix4();
+  }
+}
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide11">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="object-literals">Подобрени object literals</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Object literals са подобрени да поддържат задаване на простотипа по време 
+на създаване, по-кратък начин на foo: foo задаване, дефиниция на методи и 
+викане на функция от парента (super call).</p>
+
+<pre><code class="language-javascript">var obj = {
+    // Sets the prototype. "__proto__" or '__proto__' would also work.
+    __proto__: theProtoObj,
+    // Computed property name does not set prototype or trigger early error for
+    // duplicate __proto__ properties.
+    ['__proto__']: somethingElse,
+    // Shorthand for ‘handler: handler’
+    handler,
+    // Methods
+    toString() {
+     // Super calls
+     return "d " + super.toString();
+    },
+    // Computed (dynamic) property names
+    [ "prop_" + (() =&gt; 42)() ]: 42
+};
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide12">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="template-">Template стрингове</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>Template стрингове осигуряват syntactic sugar за създаване на стрингове. Това е подобно 
+на стринговата интерполация в Perl, Python и други. По желание може да бъде добавен таг, 
+което ни позволява конструирането на стринга да бъде по custom, избягване на инжекшън 
+атака или сглобявана на по-високо нива стриктура от данни от съдържанието на стринга.</p>
+
+<pre><code class="language-javascript">// Basic literal string creation
+`This is a pretty little template string.`
+
+// Multiline strings
+`In ES5 this is
+ not legal.`
+
+// Interpolate variable bindings
+var name = "Bob", time = "today";
+`Hello ${name}, how are you ${time}?`
+
+// Unescaped template strings
+String.raw`In ES5 "\n" is a line-feed.`
+
+// Construct an HTTP request prefix is used to interpret the replacements and construction
+GET`http://foo.org/bar?a=${a}&amp;b=${b}
+    Content-Type: application/json
+    X-Credentials: ${credentials}
+    { "foo": ${foo},
+      "bar": ${bar}}`(myOnReadyStateChangeHandler);
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide13">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="destructing">Destructing</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>Destructing синтаксиса представлява JavaScript израз, който прави възможно да екстрактваме данни от масиви или обекти в различни променливи. 
+Това се постига с т.нар pattern matching.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide14">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="destructing-1">Пример за destructing</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<pre><code class="language-javascript">// list matching
+var [a, ,b] = [1,2,3];
+a === 1;
+b === 3;
+
+// object matching
+var { op: a, lhs: { op: b }, rhs: c }
+       = getASTNode()
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide15">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="destructing-2">Още примери за destructing</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<pre><code class="language-javascript">// object matching shorthand
+// binds `op`, `lhs` and `rhs` in scope
+var {op, lhs, rhs} = getASTNode()
+
+// Can be used in parameter position
+function g({name: x}) {
+  console.log(x);
+}
+g({name: 5})
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide16">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="destructing-3">Още примери за destructing</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<pre><code class="language-javascript">// Fail-soft destructuring
+var [a] = [];
+a === undefined;
+
+// Fail-soft destructuring with defaults
+var [a = 1] = [];
+a === 1;
+
+// Destructuring + defaults arguments
+function r({x, y, w = 10, h = 10}) {
+  return x + y + w + h;
+}
+r({x:1, y:2}) === 23
+</code></pre>
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide17">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="default--rest--spread">Default + Rest + Spread</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>EcmaScript 2015 ни позволява да имаме параметри по-подразбиране да третираме последователни аргументи като масив и  да 
+превръщаме масив в последователни аргументи при извикване на функция.</p>
+<pre><code class="language-javascript">function f(x, y=12) {
+  // y is 12 if not passed (or passed as undefined)
+  return x + y;
+}
+f(3) == 15
+</code></pre>
+<pre><code class="language-javascript">function f(x, ...y) {
+  // y is an Array
+  return x * y.length;
+}
+f(3, "hello", true) == 6
+</code></pre>
+<pre><code class="language-javascript">function f(x, y, z) {
+  return x + y + z;
+}
+// Pass each elem of array as argument
+f(...[1,2,3]) == 6
+</code></pre>
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide18">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="let--const">Let + Const</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Scope на ниво control flow structures. let e новата версия на var const е константа.</p>
+<pre><code class="language-javascript">function foo(flag) {
+    if (flag) {
+        let a = 10;
+    }
+    return a;           // ReferenceError: a is not defined
+}
+console.log(foo(true));
+</code></pre>
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide19">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="iterators--forof">Iterators + For..Of</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Iterator обектите позволяват итерация със подобно for..in с custom for..of
+Няма нужда от от масив позволявайки ни lazy design.</p>
+<pre><code class="language-javascript">let fibonacci = {
+  [Symbol.iterator]() {
+    let pre = 0, cur = 1;
+    return {
+      next() {
+        [pre, cur] = [cur, pre + cur];
+        return { done: false, value: cur }
+      }
+    }
+  }
+}
+
+for (var n of fibonacci) {
+  // truncate the sequence at 1000
+  if (n &gt; 1000)
+    break;
+  console.log(n);
+}
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide20">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="generators">Generators</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Декларациа на function* (function ключовата дума следвана от звездичка) дефинира 
+функция генератор. Генератори са функции, които могат да бъдат прекъснати и след това 
+да бъдат стартирани отново. Техният контекст ще бъде запазен между извикванията.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide21">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="section-3">Прост пример за функция генератор.</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<pre><code class="language-javascript">function* idMaker(){
+  var index = 0;
+  while(index &lt; 3)
+    yield index++;
+}
+
+var gen = idMaker();
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+console.log(gen.next().value); // undefined
+// ...
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide22">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="section-4">Модули</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Подръжка на модули за дефиниране на компоненти. Имплрментира patters от популярните JavaScript modul loadres (AMD, CommonJS). 
+Безусловно асинхронен модел - кодът не се изпълнява преди изиксваните модули да са достъпни и обработени.</p>
+
+<pre><code class="language-javascript">// lib/math.js
+export function sum(x, y) {
+  return x + y;
+}
+export var pi = 3.141593;
+
+// app.js
+import * as math from "lib/math";
+console.log("2π = " + math.sum(math.pi, math.pi));
+
+// otherApp.js
+import {sum, pi} from "lib/math";
+console.log("2π = " + sum(pi, pi));
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide23">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="map--set--weakmap--weakset">Map + Set + WeakMap + WeakSet</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>По-добри структури от данни. WeakMaps осигурява leak-free обект към ключ таблица.</p>
+<pre><code class="language-javascript">// Sets
+var s = new Set();
+s.add("hello").add("goodbye").add("hello");
+s.size === 2;
+s.has("hello") === true;
+
+// Maps
+var m = new Map();
+m.set("hello", 42);
+m.set(s, 34);
+m.get(s) == 34;
+
+// Weak Maps
+var wm = new WeakMap();
+wm.set(s, { extra: 42 });
+wm.size === undefined
+
+// Weak Sets
+var ws = new WeakSet();
+ws.add({ data: 42 });
+// Because the added object has no other references, it will not be held in the set
+</code></pre>
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide24">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="babel--npm">Как да инсталираме babel от npm?</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<pre><code> npm install --save-dev babel-core
+</code></pre>
+<p>#Използване</p>
+
+<pre><code>require("babel-core").transform("code", options);
+</code></pre>
+<p>За да използваме  babel-preset-es2015 трябва да ги инсталираме.</p>
+
+<pre><code>npm install babel-preset-es2015 --save-dev
+</code></pre>
+
+<p>Доста по-удобно е, обаче да използваме gulp-babel. Това е gulp плъгин за babel. 
+<a href="https://www.npmjs.com/package/gulp-babel">https://www.npmjs.com/package/gulp-babel</a></p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide25">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="babelrc">.babelrc</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>.babelrc  файла е конфигурационният файл на babel. babel го търси в root-a на проекта. Чрез
+ .babelrc файла се разрешават инсталираните плъгини и се сетват редица опциий. Например ако имате инсталират
+  ecma2015 preset трябва да го разрешите от конфигурационния файл така:</p>
+<pre><code>{
+  "presets": ["es2015"]
+}
+</code></pre>
+
+
+          </section>
+        </div>
+
+
+
+        <div id="speaker-note" class="invisible" style="display: none;"></div>
+
+        <aside id="help" class="sidebar invisible" style="display: none;">
+          <table>
+            <caption>Help</caption>
+            <tbody>
+              <tr>
+                <th>Move Around</th>
+                <td>&larr;&nbsp;&rarr;</td>
+              </tr>
+              <tr>
+                <th>Source File</th>
+                <td>s</td>
+              </tr>
+              <tr>
+                <th>Change Theme</th>
+                <td>t</td>
+              </tr>
+              <tr>
+                <th>Syntax Highlight</th>
+                <td>h</td>
+              </tr>
+              <tr>
+                <th>Speaker Notes</th>
+                <td>n</td>
+              </tr>
+              <tr>
+                <th>Toggle 3D</th>
+                <td>3</td>
+              </tr>
+              <tr>
+                <th>Help</th>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </aside>
+
+    </div> <!-- slides -->
+    </div>
+
+
+    <script src="src/prettify/prettify.js" onload="prettyPrint();" defer></script>
+
+    <script src="js/utils.js"></script>
+    <script src="js/slide.js"></script>
+    <script src="js/slideshow.js"></script>
+    <script src="js/start.js"></script>
+  </body>
+</html>
