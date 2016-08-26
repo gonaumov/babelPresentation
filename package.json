@@ -1,0 +1,14 @@
+{
+  "name": "babelpresentation",
+  "version": "1.0.0",
+  "description": "babel presentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Georgi Naumov",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.11.4"
+  }
+}

@@ -94,25 +94,10 @@
               
 <!-- _S9SLIDE_ -->
 
-<p>От моя гледна точка Babel най-лесно се изполва от NPM. По тази причина се налага първо да обясним какво е NPM. NPM е подразбиращия се package manager на JavaScript runtime environment-a NodeJS. 
- NodeJS по-принцип се използва за разработка на backend web приложения, но по-голямата си популярност придобива чрез екосистемата от инструменти, развити около неговия package manager - NPM. 
- Изключително голяма популярност имат например т.нар scaffolding tools. Това са инструменти за бърза генерация на скелет на проект на типично приложение. Един от тях е например yeoman:</p>
-
-<p><a href="http://yeoman.io/">http://yeoman.io/</a></p>
-
-<p>Той поддържа изключително голям списък от генератори, който можете да видите тук: 
-<a href="http://yeoman.io/generators/">http://yeoman.io/generators/</a> <br />
-Освен генерация на стартовото приложение тези генератори поддържат и полезни инструменти за по-нататъчната разработка на приложението. 
-Например, както може да се види тук: 
-https://github.com/yeoman/generator-angular#readme <br />
-Генераторът на AngularJS поддържа генериране на нови контролери, директиви, филтри, вю-та и така нататък. 
-Нещата отиват и доста по-далеч. Още с началото на проекта вие вече имате организиран билд процес + 
-минификация на приложението.  Пример за малко нещо, направено с yeoman можете да видите тук: 
-<a href="http://gonaumov.github.io/easterEggs/">http://gonaumov.github.io/easterEggs/</a><br />
-На, който му е интересно може да разгледа кода ето тук: 
-<a href="https://github.com/gonaumov/easterEggs">https://github.com/gonaumov/easterEggs</a> 
-Разработката ми отне около два часа. Бяха ми спестени, сваляне на библиотеки и на структурата на приложението - контролери, директиви, сървиси и тн.</p>
-
+<p>От моя гледна точка Babel най-лесно се изполва от NPM. 
+По тази причина се налага първо да обясним какво е NPM. 
+NPM е подразбиращият се package manager на JavaScript runtime environment-a- NodeJS. 
+NodeJS по-принцип се използва за разработка на backend web приложения, но по-голямата си популярност придобива чрез екосистемата от инструменти, развити около неговия package manager - NPM.</p>
 
 
           </section>
@@ -122,16 +107,38 @@ https://github.com/yeoman/generator-angular#readme <br />
 
 
         <div class="slide transitionSlide" id="slide2">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
-          <header><h1 id="command-line-tools">Тенденция при command line tools.</h1></header>
+          <header><h1 id="scaffolding-tools">scaffolding tools</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
 
-<p>Има тенденция все повече инструменти да стават npm пакети.
-Един пример за тази тенденция е например jpm. Jpm е инструмент от командния ред, поддържан от мозила той служи за разработване, 
-тестване и пакетиране на браузерни добавки на Mozilla Firefox: 
-<a href="https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm">https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm</a>  <br />
-jpm се явява наследник на cfx инструмента, който си вървеше със старите версии на Mozila FireFox add-on SDK.</p>
+<p>Изключително голяма популярност имат например т.нар. scaffolding tools.</p>
+
+<p>Това са инструменти за бърза генерация на скелет на проект на типично приложение.</p>
+
+<p>Един от тях е например yeoman:</p>
+
+<p><a href="http://yeoman.io/">http://yeoman.io/</a></p>
+
+<p>Той поддържа изключително голям списък от генератори, които можете да видите тук: 
+<a href="http://yeoman.io/generators/">http://yeoman.io/generators/</a></p>
+
+<p>Освен генерация на стартовото приложение, тези генератори поддържат и полезни инструменти за по-нататъшната разработка на приложението. 
+Например, както може да се види тук:</p>
+
+<p>https://github.com/yeoman/generator-angular#readme</p>
+
+<p>Генераторът на AngularJS поддържа генериране на нови контролери, директиви, филтри, view-та и така нататък. 
+Нещата отиват и доста по-далеч. Още с началото на проекта вие вече имате организиран билд процес + 
+минификация на приложението.</p>
+
+<p>Пример за малко нещо, направено с yeoman, можете да видите тук: 
+<a href="http://gonaumov.github.io/easterEggs/">http://gonaumov.github.io/easterEggs/</a></p>
+
+<p>На който му е интересно, може да разгледа кода ето тук: 
+<a href="https://github.com/gonaumov/easterEggs">https://github.com/gonaumov/easterEggs</a></p>
+
+<p>Разработката ми отне около два часа. Бяха ми спестени - сваляне на библиотеки и на структурата на приложението - контролери, директиви, сървиси и тн.</p>
 
 
 
@@ -142,6 +149,28 @@ jpm се явява наследник на cfx инструмента, койт
 
 
         <div class="slide transitionSlide" id="slide3">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="command-line-tools">Тенденция при command line tools.</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>Има тенденция все повече инструменти да стават npm пакети.
+Един пример за тази тенденция е, например jpm. Jpm е инструмент от командния ред, поддържан от Мозила, служи за разработване, 
+тестване и пакетиране на браузерни добавки на Mozilla Firefox:</p>
+
+<p><a href="https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm">https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm</a></p>
+
+<p>jpm се явява наследник на cfx инструмента, който си вървеше със старите версии на Mozila FireFox add-on SDK.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide4">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="npm">Зависимости в npm</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -171,30 +200,14 @@ jpm се явява наследник на cfx инструмента, койт
 
 
 
-        <div class="slide transitionSlide" id="slide4">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide5">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="section">Къде се съдържат модулите?</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
 
 <p>npm модулите се съдържат обикновено във директорията node_modules в същия проект. 
-Ако я няма командата npm install ще ви свали нужните модули и ще създаде директорията.</p>
-
-
-
-          </section>
-        </div>
-
-
-
-
-        <div class="slide transitionSlide" id="slide5">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
-          <header><h1 id="npm-1">Смешната страна на npm.</h1></header>
-          <section>
-              <!-- _S9SLIDE_ -->
-
-<p>Тези дни имаше един забавен случай, когато се оказа, че има asci art във babel-core-a, но той е премахнат вече. Нека разгледаме какво има в този PR: 
-<a href="https://github.com/babel/babel/pull/3656">https://github.com/babel/babel/pull/3656</a></p>
+Ако я няма командата npm install, ще ви свали нужните модули и ще създаде директорията.</p>
 
 
 
@@ -205,12 +218,13 @@ jpm се явява наследник на cfx инструмента, койт
 
 
         <div class="slide transitionSlide" id="slide6">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
-          <header><h1 id="babel-1">Защо ни е нужен Babel?</h1></header>
+          <header><h1 id="npm-1">Смешната страна на npm.</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
-
-<p>Babel е де факто конвъртър от EcmaScript 6 към EcmaScript 5 с чиято помощ можем да ползваме EcmaScript  6 стандарта преди да бъде поддържан на определената среда.</p>
+<p>Тези дни имаше един забавен случай, когато се оказа, че има asci art във babel-core-a, но той е премахнат вече. Нека разгледаме какво има в този PR: 
+<a href="https://github.com/babel/babel/pull/3656">https://github.com/babel/babel/pull/3656</a>  <br />
+<img src="./guy_fieri_ascii_art-1471349356494.png =100x20" alt="image" /></p>
 
 
 
@@ -221,13 +235,12 @@ jpm се явява наследник на cfx инструмента, койт
 
 
         <div class="slide transitionSlide" id="slide7">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
-          <header><h1 id="t--">Tрансформатори на синтаксис.</h1></header>
+          <header><h1 id="babel-1">Защо ни е нужен Babel?</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
-<p>Babel поддържа текущата версия на EcmaScript - EcmaScript 2015 с помоща на 
-трансформатори на синтаксис. Това са плъгини, които ти позволяват да ползваш текущия синтаксис на EcmaScript 2015 точно сега - без да очакваме подръжка в браузерите. 
-Babel ни осигурява това чрез babel-preset-es2015 плъгина, който обединява няколко неща.</p>
+
+<p>Babel е де факто конвъртър от EcmaScript 6 към EcmaScript 5 с чиято помощ можем да ползваме EcmaScript  6 стандарта, преди да бъде поддържан на определената среда.</p>
 
 
 
@@ -238,11 +251,28 @@ Babel ни осигурява това чрез babel-preset-es2015 плъгин
 
 
         <div class="slide transitionSlide" id="slide8">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="t--">Tрансформатори на синтаксис.</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+<p>Babel поддържа текущата версия на EcmaScript - EcmaScript 2015 с помощта на 
+трансформатори на синтаксис. Това са плъгини, които ти позволяват да ползваш текущия синтаксис на EcmaScript 2015 точно сега - без да очакваш поддръжка в браузерите. 
+Babel ни осигурява това чрез babel-preset-es2015 плъгина, който обединява няколко неща.</p>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide9">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="arrows--lexical-this">Arrows и Lexical This</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
-<p>Arrow function изразите са по-кратъп синтактис в сравнение със expression функцийте и bind-ват текущия this към контекста на 
+<p>Arrow function изразите са по-кратък синтактис в сравнение със expression функциите и bind-ват текущия this към контекста на 
 функцията. Де  факто са по-кратък и бърз начин за дефиниране на анонимна функция.</p>
 
 <pre><code class="language-javascript">var a = () =&gt; {};
@@ -269,16 +299,16 @@ console.log(bob.printFriends());
 
 
 
-        <div class="slide transitionSlide" id="slide9">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide10">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="section-1">Класове</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
 
-<p>В ES2015 класовете са просто sugar syntax около прототипно базираното 
-ООП. Тъй като имат по-просто декларативна форма те са по-лесни за употреба. 
-Класовете поддържат прототипно базирано наследяване извикване на базовия клас 
-със super, инстанцийране, статични методи и конструктори.</p>
+<p>В ES2015 класовете са просто sugar syntax около прототипно-базираното 
+ООП. Тъй като имат по-просто декларативна форма, те са по-лесни за употреба. 
+Класовете поддържат прототипно базирано наследяване, извикване на базовия клас 
+със super, инстанцииране, статични методи и конструктори.</p>
 
 
 
@@ -288,7 +318,7 @@ console.log(bob.printFriends());
 
 
 
-        <div class="slide transitionSlide" id="slide10">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide11">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="section-2">Пример за клас.</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -320,7 +350,7 @@ console.log(bob.printFriends());
 
 
 
-        <div class="slide transitionSlide" id="slide11">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide12">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="object-literals">Подобрени object literals</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -355,16 +385,16 @@ console.log(bob.printFriends());
 
 
 
-        <div class="slide transitionSlide" id="slide12">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide13">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="template-">Template стрингове</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
 
-<p>Template стрингове осигуряват syntactic sugar за създаване на стрингове. Това е подобно 
+<p>Template стринговете осигуряват syntactic sugar за създаване на стрингове. Това е подобно 
 на стринговата интерполация в Perl, Python и други. По желание може да бъде добавен таг, 
-което ни позволява конструирането на стринга да бъде по custom, избягване на инжекшън 
-атака или сглобявана на по-високо нива стриктура от данни от съдържанието на стринга.</p>
+което ни позволява конструирането на стринга да бъде по-custom, избягване на инжекшън 
+атака или сглобявана на по-високо ниво структура от данни от съдържанието на стринга.</p>
 
 <pre><code class="language-javascript">// Basic literal string creation
 `This is a pretty little template string.`
@@ -396,13 +426,13 @@ GET`http://foo.org/bar?a=${a}&amp;b=${b}
 
 
 
-        <div class="slide transitionSlide" id="slide13">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide14">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="destructing">Destructing</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
 
-<p>Destructing синтаксиса представлява JavaScript израз, който прави възможно да екстрактваме данни от масиви или обекти в различни променливи. 
+<p>Destructing синтаксисът представлява JavaScript израз, който прави възможно да екстрактваме данни от масиви или обекти в различни променливи. 
 Това се постига с т.нар pattern matching.</p>
 
 
@@ -413,7 +443,7 @@ GET`http://foo.org/bar?a=${a}&amp;b=${b}
 
 
 
-        <div class="slide transitionSlide" id="slide14">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide15">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="destructing-1">Пример за destructing</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -436,7 +466,7 @@ var { op: a, lhs: { op: b }, rhs: c }
 
 
 
-        <div class="slide transitionSlide" id="slide15">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide16">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="destructing-2">Още примери за destructing</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -460,7 +490,7 @@ g({name: 5})
 
 
 
-        <div class="slide transitionSlide" id="slide16">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide17">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="destructing-3">Още примери за destructing</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -487,12 +517,12 @@ r({x:1, y:2}) === 23
 
 
 
-        <div class="slide transitionSlide" id="slide17">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide18">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="default--rest--spread">Default + Rest + Spread</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
-<p>EcmaScript 2015 ни позволява да имаме параметри по-подразбиране да третираме последователни аргументи като масив и  да 
+<p>EcmaScript 2015 ни позволява да имаме параметри по подразбиране - да третираме последователни аргументи като масив и  да 
 превръщаме масив в последователни аргументи при извикване на функция.</p>
 <pre><code class="language-javascript">function f(x, y=12) {
   // y is 12 if not passed (or passed as undefined)
@@ -520,7 +550,7 @@ f(...[1,2,3]) == 6
 
 
 
-        <div class="slide transitionSlide" id="slide18">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide19">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="let--const">Let + Const</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -542,13 +572,13 @@ console.log(foo(true));
 
 
 
-        <div class="slide transitionSlide" id="slide19">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide20">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="iterators--forof">Iterators + For..Of</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
-<p>Iterator обектите позволяват итерация със подобно for..in с custom for..of
-Няма нужда от от масив позволявайки ни lazy design.</p>
+<p>Iterator обектите позволяват итерация с подобно for..in с custom for..of
+Няма нужда от от масив, позволявайки ни lazy design.</p>
 <pre><code class="language-javascript">let fibonacci = {
   [Symbol.iterator]() {
     let pre = 0, cur = 1;
@@ -577,12 +607,12 @@ for (var n of fibonacci) {
 
 
 
-        <div class="slide transitionSlide" id="slide20">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide21">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="generators">Generators</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
-<p>Декларациа на function* (function ключовата дума следвана от звездичка) дефинира 
+<p>Декларациа на function* (function ключовата дума, следвана от звездичка) дефинира 
 функция генератор. Генератори са функции, които могат да бъдат прекъснати и след това 
 да бъдат стартирани отново. Техният контекст ще бъде запазен между извикванията.</p>
 
@@ -594,7 +624,7 @@ for (var n of fibonacci) {
 
 
 
-        <div class="slide transitionSlide" id="slide21">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide22">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="section-3">Прост пример за функция генератор.</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -622,13 +652,13 @@ console.log(gen.next().value); // undefined
 
 
 
-        <div class="slide transitionSlide" id="slide22">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide23">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="section-4">Модули</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
-<p>Подръжка на модули за дефиниране на компоненти. Имплрментира patters от популярните JavaScript modul loadres (AMD, CommonJS). 
-Безусловно асинхронен модел - кодът не се изпълнява преди изиксваните модули да са достъпни и обработени.</p>
+<p>Поддръжка на модули за дефиниране на компоненти. Имплементира patterns от популярните JavaScript module loadres (AMD, CommonJS). 
+Безусловно асинхронен модел - кодът не се изпълнява, преди изиксваните модули да са достъпни и обработени.</p>
 
 <pre><code class="language-javascript">// lib/math.js
 export function sum(x, y) {
@@ -653,7 +683,7 @@ console.log("2π = " + sum(pi, pi));
 
 
 
-        <div class="slide transitionSlide" id="slide23">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide24">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="map--set--weakmap--weakset">Map + Set + WeakMap + WeakSet</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -689,7 +719,7 @@ ws.add({ data: 42 });
 
 
 
-        <div class="slide transitionSlide" id="slide24">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide25">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="babel--npm">Как да инсталираме babel от npm?</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
@@ -697,7 +727,19 @@ ws.add({ data: 42 });
 
 <pre><code> npm install --save-dev babel-core
 </code></pre>
-<p>#Използване</p>
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide26">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="section-5">Използване</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
 
 <pre><code>require("babel-core").transform("code", options);
 </code></pre>
@@ -706,7 +748,7 @@ ws.add({ data: 42 });
 <pre><code>npm install babel-preset-es2015 --save-dev
 </code></pre>
 
-<p>Доста по-удобно е, обаче да използваме gulp-babel. Това е gulp плъгин за babel. 
+<p>Доста по-удобно е обаче да използваме gulp-babel. Това е gulp плъгин за babel. 
 <a href="https://www.npmjs.com/package/gulp-babel">https://www.npmjs.com/package/gulp-babel</a></p>
 
 
@@ -717,18 +759,64 @@ ws.add({ data: 42 });
 
 
 
-        <div class="slide transitionSlide" id="slide25">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+        <div class="slide transitionSlide" id="slide27">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
           <header><h1 id="babelrc">.babelrc</h1></header>
           <section>
               <!-- _S9SLIDE_ -->
 
-<p>.babelrc  файла е конфигурационният файл на babel. babel го търси в root-a на проекта. Чрез
- .babelrc файла се разрешават инсталираните плъгини и се сетват редица опциий. Например ако имате инсталират
+<p>.babelrc  файла е конфигурационният файл на babel. babel го търси в root-a на проекта.</p>
+
+<p>Чрез .babelrc файла се разрешават инсталираните плъгини и се сетват редица опции.</p>
+
+<p>Например, ако имате инсталиран
   ecma2015 preset трябва да го разрешите от конфигурационния файл така:</p>
 <pre><code>{
   "presets": ["es2015"]
 }
 </code></pre>
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide28">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="gulp-babel">gulp-babel</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>gulp-babel е gulp плъгин за по-лесна работа с babel. 
+Ето пример за неговата употреба:</p>
+<pre><code class="language-javascript">const gulp = require('gulp');
+const babel = require('gulp-babel');
+ 
+gulp.task('default', () =&gt; {
+    return gulp.src('app.js')
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('dist'));
+});
+</code></pre>
+
+
+
+          </section>
+        </div>
+
+
+
+
+        <div class="slide transitionSlide" id="slide29">  <!-- fix: add +2 or +1 was: (i+2).to_s -->
+          <header><h1 id="section-6">Въпроси</h1></header>
+          <section>
+              <!-- _S9SLIDE_ -->
+
+
+<p>Q &amp; A</p>
 
 
           </section>
