@@ -1,0 +1,8 @@
+headers:
+  generator: "<%= Slideshow.generator %>"
+  author: Georgi Naumov
+  email: gonaumov@gmail.com
+  title: Babel, or how to use next generation JavaScript nowadays?
+  subtitle: "" 
+  date: "<%= Date.today %>"
+
