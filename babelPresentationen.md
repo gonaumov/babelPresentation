@@ -1,50 +1,52 @@
 # Babel
-От моя гледна точка Babel най-лесно се изполва от NPM. 
-По тази причина се налага първо да обясним какво е NPM. 
-NPM е подразбиращият се package manager на JavaScript runtime environment-a- NodeJS. 
-NodeJS по-принцип се използва за разработка на backend web приложения, но по-голямата си популярност придобива чрез екосистемата от инструменти, развити около неговия package manager - NPM. 
+
+From my point of view Babel easily can be used from NPM.
+Therefore, it is necessary to first explain what NPM.
+NPM is the default package manager on JavaScript runtime environment-a- NodeJS.
+NodeJS in principle be used to develop backend web applications, but the big popularity acquired by ecosystem of tools developed around its package manager - NPM.
+
 # scaffolding tools
 
-Изключително голяма популярност имат например т.нар. scaffolding tools. 
 
-Това са инструменти за бърза генерация на скелет на проект на типично приложение. 
-
-Един от тях е например yeoman: 
+Extremely popular as a so-called. scaffolding tools.
+These are tools for rapid generation of skeleton of a typical application.
+One of them is, for example yeoman:
   
 [http://yeoman.io/](http://yeoman.io/)  
+
+It supports very large inventory of generators, which you can see here:
  
- Той поддържа изключително голям списък от генератори, които можете да видите тук: 
 [http://yeoman.io/generators/](http://yeoman.io/generators/) 
   
-Освен генерация на стартовото приложение, тези генератори поддържат и полезни инструменти за по-нататъшната разработка на приложението. 
-Например, както може да се види тук: 
+Besides generation of startup application, these generators support and useful tools for the further development of the application.
+For example, as can be seen here:
 
 https://github.com/yeoman/generator-angular#readme  
- 
-Генераторът на AngularJS поддържа генериране на нови контролери, директиви, филтри, view-та и така нататък. 
-Нещата отиват и доста по-далеч. Още с началото на проекта вие вече имате организиран билд процес + 
-минификация на приложението.
 
-Пример за малко нещо, направено с yeoman, можете да видите тук: 
+The for Generator AngularJS supports the generation of new controllers, directives, filters, views and so on.
+Things go much further. Ever since the beginning of the project you already have organized the build process and
+code minification.
+
+An example of a little thing done with help of yeoman, you can see here:
 [http://gonaumov.github.io/easterEggs/](http://gonaumov.github.io/easterEggs/) 
  
-На който му е интересно, може да разгледа кода ето тук: 
+The code can be seen here: 
 [https://github.com/gonaumov/easterEggs](https://github.com/gonaumov/easterEggs) 
 
-Разработката ми отне около два часа. Бяха ми спестени - сваляне на библиотеки и на структурата на приложението – контролери, директиви, сървиси и тн. 
+The work took me about two hours. I escaped a lot of things - downloading libraries and the structure of the application - controllers, directives, service and so on.
 
-# Тенденция при command line tools. 
+# Trend of development in command line tools.
  
-Има тенденция все повече инструменти да стават npm пакети.
-Един пример за тази тенденция е, например jpm. Jpm е инструмент от командния ред, поддържан от Мозила, служи за разработване, 
-тестване и пакетиране на браузерни добавки на Mozilla Firefox: 
+It tends more and more tools to become npm packages.
+One example of this trend, for example jpm. Jpm is a command line tool supported by Mozilla, serves as the development,
+testing and packaging of supplements browser Mozilla Firefox:
 
 [https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm](https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm) 
-   
-jpm се явява наследник на cfx инструмента, който си вървеше със старите версии на Mozila FireFox add-on SDK. 
+
+jpm is the successor of cfx tool that was walking with older versions of Mozila FireFox add-on SDK.
 
 # Зависимости в npm
-Npm държи списъка от зависимости във .json файл, наречен package.json. Ето пример за типичен package.json:
+Npm keep the list of dependencies in .json file called package.json. Here is an example of a typical package.json:
 ```
 { 
   "name": "babelpresentation", 
@@ -62,29 +64,30 @@ Npm държи списъка от зависимости във .json файл,
 } 
 ```
 
-# Къде се съдържат модулите? 
+# Where are the modules in the file system?
 
-npm модулите се съдържат обикновено във директорията node_modules в същия проект. 
-Ако я няма командата npm install, ще ви свали нужните модули и ще създаде директорията. 
+npm modules are contained in the directory with name node_modules in the same project.
+If this directory doesn't exists command npm install, will download the necessary modules and create the directory.
 
 
-# Смешната страна на npm. 
-Тези дни имаше един забавен случай, когато се оказа, че има asci art във babel-core-a, но той е премахнат вече. Нека разгледаме какво има в този PR: 
+# The funny side of NPM.
+These days, there was a funny event, when it turned out that there asci art in babel-core, but it is already removed. 
+Let's examine what is in this PR:
 [https://github.com/babel/babel/pull/3656](https://github.com/babel/babel/pull/3656)    
 ![image](./guy_fieri_ascii_art-1471349356494.png =100x20)
 
-# Защо ни е нужен Babel? 
+# Why we need Babel?
 
-Babel е де факто конвъртър от EcmaScript 6 към EcmaScript 5 с чиято помощ можем да ползваме EcmaScript  6 стандарта, преди да бъде поддържан на определената среда. 
+Babel is the de facto converter of EcmaScript EcmaScript 6 to 5 with whose help we can use EcmaScript 6 standard before it can be maintained at a certain environment.
 
-# Tрансформатори на синтаксис.
-Babel поддържа текущата версия на EcmaScript – EcmaScript 2015 с помощта на 
-трансформатори на синтаксис. Това са плъгини, които ти позволяват да ползваш текущия синтаксис на EcmaScript 2015 точно сега – без да очакваш поддръжка в браузерите. 
-Babel ни осигурява това чрез babel-preset-es2015 плъгина, който обединява няколко неща.
+# Syntax Transformers
+Babel supports the current version of the EcmaScript - EcmaScript 2015 with the help of
+syntax transformers. These are plugins that allow you to use the current syntax EcmaScript 2015 right now - without expecting support in browsers.
+Babel provides us with this by babel-preset-es2015 plugin that combines several things.
 
-# Arrows и Lexical This
-Arrow function изразите са по-кратък синтактис в сравнение със expression функциите и bind-ват текущия this към контекста на 
-функцията. Де  факто са по-кратък и бърз начин за дефиниране на анонимна функция. 
+# Arrows and Lexical This
+Arrows are a function shorthand using the => syntax. They are syntactically similar to the related feature in C#, Java 8 and CoffeeScript. 
+They support both expression and statement bodies. Unlike functions, arrows share the same lexical this as their surrounding code.
 
 ```javascript
 var a = () => {};
@@ -103,14 +106,11 @@ var bob = {
 };
 console.log(bob.printFriends());
 ```
-# Класове
+# Classes
 
-В ES2015 класовете са просто sugar syntax около прототипно-базираното 
-ООП. Тъй като имат по-просто декларативна форма, те са по-лесни за употреба. 
-Класовете поддържат прототипно базирано наследяване, извикване на базовия клас 
-със super, инстанцииране, статични методи и конструктори.
+ES2015 classes are a simple sugar over the prototype-based OO pattern. Having a single convenient declarative form makes class patterns easier to use, 
+and encourages interoperability. Classes support prototype-based inheritance, super calls, instance and static methods and constructors.
 
-# Пример за клас. 
 ```javascript
 class SkinnedMesh extends THREE.Mesh {
   constructor(geometry, materials) {
@@ -131,10 +131,10 @@ class SkinnedMesh extends THREE.Mesh {
 }
 ```
 
-# Подобрени object literals
-Object literals са подобрени да поддържат задаване на простотипа по време 
-на създаване, по-кратък начин на foo: foo задаване, дефиниция на методи и 
-викане на функция от парента (super call). 
+# Enhanced Object Literals
+Object literals are extended to support setting the prototype at construction, shorthand for foo: foo assignments, 
+defining methods and making super calls. Together, these also bring object literals and class declarations closer together, 
+and let object-based design benefit from some of the same conveniences.
 
 ```javascript
 var obj = {
@@ -155,13 +155,10 @@ var obj = {
 };
 ```
 
-# Template стрингове
-
-Template стринговете осигуряват syntactic sugar за създаване на стрингове. Това е подобно 
-на стринговата интерполация в Perl, Python и други. По желание може да бъде добавен таг, 
-което ни позволява конструирането на стринга да бъде по-custom, избягване на инжекшън 
-атака или сглобявана на по-високо ниво структура от данни от съдържанието на стринга. 
-
+# Template Strings
+Template strings provide syntactic sugar for constructing strings. This is similar to string interpolation features in Perl, 
+Python and more. Optionally, a tag can be added to allow the string construction to be customized, avoiding injection attacks or 
+constructing higher level data structures from string contents.
 ```javascript
 // Basic literal string creation
 `This is a pretty little template string.`
@@ -187,11 +184,11 @@ GET`http://foo.org/bar?a=${a}&b=${b}
 
 # Destructing
 
-Destructing синтаксисът представлява JavaScript израз, който прави възможно да екстрактваме данни от масиви или обекти в различни променливи. 
-Това се постига с т.нар pattern matching. 
+Destructuring allows binding using pattern matching, with support for matching arrays and objects. Destructuring is fail-soft, 
+similar to standard object lookup foo["bar"], producing undefined values when not found. 
 
 
-# Пример за destructing
+# Example for destructing
 ```javascript
 // list matching
 var [a, ,b] = [1,2,3];
@@ -203,7 +200,7 @@ var { op: a, lhs: { op: b }, rhs: c }
        = getASTNode()
 ```
 
-# Още примери за destructing
+# More examples for destructing
 ```javascript
 // object matching shorthand
 // binds `op`, `lhs` and `rhs` in scope
@@ -216,7 +213,7 @@ function g({name: x}) {
 g({name: 5})
 ```
 
-# Още примери за destructing
+# Even more examples for destructing
 ```javascript
 // Fail-soft destructuring
 var [a] = [];
@@ -233,8 +230,8 @@ function r({x, y, w = 10, h = 10}) {
 r({x:1, y:2}) === 23
 ```
 # Default + Rest + Spread
-EcmaScript 2015 ни позволява да имаме параметри по подразбиране - да третираме последователни аргументи като масив и  да 
-превръщаме масив в последователни аргументи при извикване на функция.
+Callee-evaluated default parameter values. Turn an array into consecutive arguments in a function call. 
+Bind trailing parameters to an array. Rest replaces the need for arguments and addresses common cases more directly.
 ```javascript
 function f(x, y=12) {
   // y is 12 if not passed (or passed as undefined)
@@ -257,7 +254,8 @@ function f(x, y, z) {
 f(...[1,2,3]) == 6
 ```
 # Let + Const
-Scope на ниво control flow structures. let e новата версия на var const е константа.
+Block-scoped binding constructs. let is the new var. const is single-assignment. 
+Static restrictions prevent use before assignment.
 ```javascript
 function foo(flag) {
     if (flag) {
@@ -268,8 +266,8 @@ function foo(flag) {
 console.log(foo(true));
 ```
 # Iterators + For..Of
-Iterator обектите позволяват итерация с подобно for..in с custom for..of
-Няма нужда от от масив, позволявайки ни lazy design. 
+Iterator objects enable custom iteration like CLR IEnumerable or Java Iterable. Generalize for..in to custom iterator-based iteration with for..of. 
+Don’t require realizing an array, enabling lazy design patterns like LINQ.
 ```javascript
 let fibonacci = {
   [Symbol.iterator]() {
@@ -292,9 +290,9 @@ for (var n of fibonacci) {
 ```
 
 # Generators
-Декларациа на function* (function ключовата дума, следвана от звездичка) дефинира 
-функция генератор. Генератори са функции, които могат да бъдат прекъснати и след това 
-да бъдат стартирани отново. Техният контекст ще бъде запазен между извикванията.
+Generators simplify iterator-authoring using function* and yield. A function declared as function* returns a Generator instance. 
+Generators are subtypes of iterators which include additional next and throw. These enable values to flow back into the generator, 
+so yield is an expression form which returns a value (or throws).
 
 # Прост пример за функция генератор.
 ```javascript
@@ -313,9 +311,9 @@ console.log(gen.next().value); // undefined
 // ...
 ```
 
-# Модули
-Поддръжка на модули за дефиниране на компоненти. Имплементира patterns от популярните JavaScript module loadres (AMD, CommonJS). 
-Безусловно асинхронен модел - кодът не се изпълнява, преди изиксваните модули да са достъпни и обработени.
+# Modules
+Language-level support for modules for component definition. Codifies patterns from popular JavaScript module loaders (AMD, CommonJS). 
+Runtime behaviour defined by a host-defined default loader. Implicitly async model – no code executes until requested modules are available and processed.
 
 ```javascript
 // lib/math.js
@@ -334,7 +332,7 @@ console.log("2π = " + sum(pi, pi));
 ```
 
 # Map + Set + WeakMap + WeakSet
-По-добри структури от данни. WeakMaps осигурява leak-free обект към ключ таблица. 
+Efficient data structures for common algorithms. WeakMaps provides leak-free object-key’d side tables.
 ```javascript
 // Sets
 var s = new Set();
@@ -358,32 +356,29 @@ var ws = new WeakSet();
 ws.add({ data: 42 });
 // Because the added object has no other references, it will not be held in the set
 ```
-# Как да инсталираме babel от npm? 
+# How to install Babel from npm? 
 
 ```
  npm install --save-dev babel-core
 ```
-# Използване
+# Usage
 
 ```
 require("babel-core").transform("code", options);
 ```
-За да използваме  babel-preset-es2015 трябва да ги инсталираме. 
-
+If we want to use  babel-preset-es2015 we must install it.
 ```
 npm install babel-preset-es2015 --save-dev
 ```
 
-Доста по-удобно е обаче да използваме gulp-babel. Това е gulp плъгин за babel. 
+Much more convenient to use, however is gulp-babel. This is gulp plugin for babel.
 [https://www.npmjs.com/package/gulp-babel](https://www.npmjs.com/package/gulp-babel)
 
 # .babelrc
-.babelrc  файла е конфигурационният файл на babel. babel го търси в root-a на проекта.
+.babelrc file is the configuration file of babel. babel search for this file in the root of a project.
+From .babelrc file you can allow the installed plugins and setvat number of options.
 
-Чрез .babelrc файла се разрешават инсталираните плъгини и се сетват редица опции. 
-
-Например, ако имате инсталиран
-  ecma2015 preset трябва да го разрешите от конфигурационния файл така:
+For example, if you have installed ecma2015 preset you must enable configuration file like that:
 ```
 {
   "presets": ["es2015"]
@@ -391,8 +386,7 @@ npm install babel-preset-es2015 --save-dev
 ```      
 # gulp-babel
 
-gulp-babel е gulp плъгин за по-лесна работа с babel. 
-Ето пример за неговата употреба:
+gulp-babel is cool gulp plugin. This is example of gulp-babel usage. 
 ```javascript
 const gulp = require('gulp');
 const babel = require('gulp-babel');
@@ -406,7 +400,7 @@ gulp.task('default', () => {
 });
 ```
 
-# Въпроси
+# Questions? 
 
 Q & A 
 
