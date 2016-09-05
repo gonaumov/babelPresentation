@@ -45,7 +45,7 @@ testing and packaging of supplements browser Mozilla Firefox:
 
 jpm is the successor of cfx tool that was walking with older versions of Mozila FireFox add-on SDK.
 
-# Зависимости в npm
+# Dependencies in npm
 Npm keep the list of dependencies in .json file called package.json. Here is an example of a typical package.json:
 ```
 { 
@@ -74,7 +74,7 @@ If this directory doesn't exists command npm install, will download the necessar
 These days, there was a funny event, when it turned out that there asci art in babel-core, but it is already removed. 
 Let's examine what is in this PR:
 [https://github.com/babel/babel/pull/3656](https://github.com/babel/babel/pull/3656)    
-![image](./guy_fieri_ascii_art-1471349356494.png =100x20)
+![image](./guy_fieri_ascii_art-1471349356494.png)
 
 # Why we need Babel?
 
@@ -294,7 +294,7 @@ Generators simplify iterator-authoring using function* and yield. A function dec
 Generators are subtypes of iterators which include additional next and throw. These enable values to flow back into the generator, 
 so yield is an expression form which returns a value (or throws).
 
-# Прост пример за функция генератор.
+# Simple example of generator functions. 
 ```javascript
 function* idMaker(){
   var index = 0;
