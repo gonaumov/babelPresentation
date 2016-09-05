@@ -1,14 +1,14 @@
 # Babel
 
 From my point of view Babel easily can be used from NPM.
-Therefore, it is necessary to first explain what NPM.
-NPM is the default package manager on JavaScript runtime environment-a- NodeJS.
-NodeJS in principle be used to develop backend web applications, but the big popularity acquired by ecosystem of tools developed around its package manager - NPM.
+Therefore, it is necessary to first explain what NPM is.
+NPM is the default package manager of JavaScript runtime environment for NodeJS.
+NodeJS as a whole, can be used to develop backend web applications, but the big popularity it has, is because of the ecosystem of tools developed around its package manager - NPM.
 
 # scaffolding tools
 
 
-Extremely popular as a so-called. scaffolding tools.
+Extremely popular as a so called. scaffolding tools.
 These are tools for rapid generation of skeleton of a typical application.
 One of them is, for example yeoman:
   
@@ -23,7 +23,7 @@ For example, as can be seen here:
 
 https://github.com/yeoman/generator-angular#readme  
 
-The for Generator AngularJS supports the generation of new controllers, directives, filters, views and so on.
+The Generator for AngularJS supports the generation of new controllers, directives, filters, views and so on.
 Things go much further. Ever since the beginning of the project you already have organized the build process and
 code minification.
 
@@ -33,12 +33,12 @@ An example of a little thing done with help of yeoman, you can see here:
 The code can be seen here: 
 [https://github.com/gonaumov/easterEggs](https://github.com/gonaumov/easterEggs) 
 
-The work took me about two hours. I escaped a lot of things - downloading libraries and the structure of the application - controllers, directives, service and so on.
+The whole work took me about two hours. I skipped a lot of things - downloading libraries and the structure of the application - controllers, directives, service and so on.
 
 # Trend in command line tools.
  
 It tends more and more tools to become npm packages.
-One example of this trend, for example jpm. Jpm is a command line tool supported by Mozilla, serves as the development,
+One example of this trend, is - for example jpm. Jpm is a command line tool supported by Mozilla, serves as the development,
 testing and packaging of supplements browser Mozilla Firefox:
 
 [https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm](https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm) 
@@ -46,7 +46,7 @@ testing and packaging of supplements browser Mozilla Firefox:
 jpm is the successor of cfx tool that was walking with older versions of Mozila FireFox add-on SDK.
 
 # Dependencies in npm
-Npm keep the list of dependencies in .json file called package.json. Here is an example of a typical package.json:
+Npm keeps the list of dependencies in .json file called package.json. Here is an example of a typical package.json:
 ```
 { 
   "name": "babelpresentation", 
@@ -67,18 +67,18 @@ Npm keep the list of dependencies in .json file called package.json. Here is an 
 # Where are the modules in the file system?
 
 npm modules are contained in the directory with name node_modules in the same project.
-If this directory doesn't exists command npm install, will download the necessary modules and create the directory.
+If this directory doesn't exist, command npm install, will download the necessary modules and create the directory.
 
 
 # The funny side of NPM.
-These days, there was a funny event, when it turned out that there asci art in babel-core, but it is already removed. 
+These days, there was a funny case, when it turned out that there was asci art in babel-core, but it is already removed. 
 Let's examine what is in this PR:
 [https://github.com/babel/babel/pull/3656](https://github.com/babel/babel/pull/3656)    
 ![image](./guy_fieri_ascii_art-1471349356494.png)
 
-# Why we need Babel?
+# Why do we need Babel?
 
-Babel is the de facto converter of EcmaScript EcmaScript 6 to 5 with whose help we can use EcmaScript 6 standard before it can be maintained at a certain environment.
+Babel is the de facto converter of EcmaScript 6 to 5, with its help we can use EcmaScript 6 standard before it can be maintained at a certain environment.
 
 # Syntax Transformers
 Babel supports the current version of the EcmaScript - EcmaScript 2015 with the help of
