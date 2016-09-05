@@ -35,7 +35,7 @@ The code can be seen here:
 
 The work took me about two hours. I escaped a lot of things - downloading libraries and the structure of the application - controllers, directives, service and so on.
 
-# Trend of development in command line tools.
+# Trend in command line tools.
  
 It tends more and more tools to become npm packages.
 One example of this trend, for example jpm. Jpm is a command line tool supported by Mozilla, serves as the development,
