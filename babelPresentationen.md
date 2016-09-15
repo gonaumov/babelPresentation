@@ -2,7 +2,7 @@
 
 From my point of view Babel easily can be used from NPM.
 Therefore, it is necessary to first explain what NPM is.
-NPM is the default package manager of JavaScript runtime environment for NodeJS.
+NPM is the default package manager of JavaScript runtime environment NodeJS.
 NodeJS as a whole, can be used to develop backend web applications, but the big popularity it has, is because of the ecosystem of tools developed around its package manager - NPM.
 
 # scaffolding tools
@@ -11,7 +11,7 @@ NodeJS as a whole, can be used to develop backend web applications, but the big 
 Extremely popular as a so called. scaffolding tools.
 These are tools for rapid generation of skeleton of a typical application.
 One of them is, for example yeoman:
-  
+
 [http://yeoman.io/](http://yeoman.io/)  
 
 It supports very large inventory of generators, which you can see here:
@@ -28,6 +28,7 @@ Things go much further. Ever since the beginning of the project you already have
 code minification.
 
 An example of a little thing done with help of yeoman, you can see here:
+
 [http://gonaumov.github.io/easterEggs/](http://gonaumov.github.io/easterEggs/) 
  
 The code can be seen here: 
@@ -43,7 +44,7 @@ testing and packaging of supplements browser Mozilla Firefox:
 
 [https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm](https://developer.mozilla.org/en-US/Add-ons/SDK/Tools/jpm) 
 
-jpm is the successor of cfx tool that was walking with older versions of Mozila FireFox add-on SDK.
+jpm is the successor of cfx tool that was shipped with older versions of Mozila FireFox add-on SDK.
 
 # Dependencies in npm
 Npm keeps the list of dependencies in .json file called package.json. Here is an example of a typical package.json:
