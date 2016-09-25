@@ -10,5 +10,6 @@
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.11.4"
-  }
+  },
+  "private": true
 }
