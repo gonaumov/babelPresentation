@@ -9,7 +9,8 @@
   "author": "Georgi Naumov",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.11.4"
+    "babel-cli": "^6.11.4",
+    "markdown-pdf": "^7.0.0"
   },
   "private": true
 }
